@@ -4,50 +4,50 @@ using UnityEngine;
 
 public class FlotingHandler : MonoBehaviour
 {
-    /*    Vector3 initialPos;
-        public float floatHeight;
-
-        void Start()
-        {
-            initialPos = transform.position;
-        }
-        void Update()
-        {
-            if (transform.position == initialPos)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y+ floatHeight, transform.position.z), Time.deltaTime);
-            }
-            else if (transform.position.y == floatHeight)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, initialPos, Time.deltaTime);
-            }
-        }*/
-    // this makes the object float up and down 
-
-    // The original position of the object
     private Vector3 originalPosition;
-
-    // The speed of the floating movement
-    public float speed = 1f;
-
-    // The amplitude of the floating movement
-    public float amplitude = 0.1f;
-
-    // Start is called before the first frame update
+    float randomVal;
+    [SerializeField] float speed = 1f,amplitude = 0.1f, angle = 45f;
+    [SerializeField] bool randomInAmplitude;
+    [SerializeField] Vector3 axis = Vector3.right;
     void Start()
     {
-        // Store the original position of the object
         originalPosition = transform.position;
+        randomVal = randomInAmplitude ? Random.Range(.1f, 1) : 1;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        // Calculate the new position of the object
         Vector3 newPosition = originalPosition;
-        newPosition.y += Mathf.Sin(Time.time * speed) * amplitude;
-
-        // Move the object to the new position
+        newPosition.y += Mathf.Sin(Time.time * speed) * (amplitude * randomVal);
         transform.position = newPosition;
+
+        float currentAngle = Mathf.Sin(Time.time * speed) * angle;
+        transform.RotateAround(originalPosition, axis, currentAngle);
     }
+
+    // The angle of the rotation in degrees
+    /* void FixedUpdate()
+     {
+         if (rotateX)
+         {
+             x += Time.deltaTime * speed;
+
+             if (x > rangeOfRotation)
+             {
+                 x = 0.0f;
+                 rotateX = false;
+             }
+         }
+         else
+         {
+             z += Time.deltaTime * speed;
+
+             if (z > rangeOfRotation)
+             {
+                 z = 0.0f;
+                 rotateX = true;
+             }
+         }
+
+         transform.localRotation = Quaternion.Euler(x, 0, z);
+     }*/
 }
