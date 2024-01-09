@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlotingHandler : MonoBehaviour
 {
     private Vector3 originalPosition;
     float randomVal;
-    [SerializeField] float speed = 1f,amplitude = 0.1f, angle = 45f;
-    [SerializeField] bool randomInAmplitude;
+    [Range(0,10)]
+    [SerializeField] float speed = 1f, amplitude = 0.1f;
+    [Range(0, 90)]
+    [Tooltip("Check true to doRotation for rotation")]
+    [SerializeField] float  angle = 1f;
+    [SerializeField] bool randomInAmplitude,doRotation;
     [SerializeField] Vector3 axis = Vector3.right;
     void Start()
     {
@@ -19,35 +21,12 @@ public class FlotingHandler : MonoBehaviour
         Vector3 newPosition = originalPosition;
         newPosition.y += Mathf.Sin(Time.time * speed) * (amplitude * randomVal);
         transform.position = newPosition;
-
-        float currentAngle = Mathf.Sin(Time.time * speed) * angle;
-        transform.RotateAround(originalPosition, axis, currentAngle);
+        if (doRotation)
+        { 
+            float currentAngle = (Mathf.Sin(Time.time * speed))* angle;
+            currentAngle = Mathf.Clamp(currentAngle, -angle, angle);
+            Quaternion rot = Quaternion.AngleAxis(currentAngle, axis);
+            transform.rotation = rot;
+        }
     }
-
-    // The angle of the rotation in degrees
-    /* void FixedUpdate()
-     {
-         if (rotateX)
-         {
-             x += Time.deltaTime * speed;
-
-             if (x > rangeOfRotation)
-             {
-                 x = 0.0f;
-                 rotateX = false;
-             }
-         }
-         else
-         {
-             z += Time.deltaTime * speed;
-
-             if (z > rangeOfRotation)
-             {
-                 z = 0.0f;
-                 rotateX = true;
-             }
-         }
-
-         transform.localRotation = Quaternion.Euler(x, 0, z);
-     }*/
 }
