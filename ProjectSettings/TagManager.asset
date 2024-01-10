@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Glow
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Glow
   - 
   - 
   - 
