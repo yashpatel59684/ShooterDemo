@@ -14,20 +14,18 @@ public class BowController : MonoBehaviour
     {
         switch (context.phase)
         {
-            case InputActionPhase.Performed:
             case InputActionPhase.Canceled:
-                /*if (context.interaction is SlowTapInteraction)
-                {
-                    StartCoroutine(BurstFire((int)(burstSpeed)));
-                }
-                else
-                {
-                }*/
+                animator.SetBool("Default", true);
+                animator.Play("Bow");
                 m_Charging = false;
-                if (context.phase.IsInProgress()) break;
+                timeRemaining = 1;
+                break;
+            case InputActionPhase.Performed:
                 animator.SetBool("Default",true);
                 animator.Play("Bow");
-                Fire((int)((timeRemaining - (int)timeRemaining) * 100));
+                //Fire((int)((timeRemaining - (int)timeRemaining) * 100));
+                Fire();
+                m_Charging = false;
                 timeRemaining = 1;
                 break;
 
@@ -54,7 +52,7 @@ public class BowController : MonoBehaviour
     }
     private void Fire(float givenForce=1)
     {
-        givenForce /= 100;
+        //givenForce /= 100;
         var transform = projectileSpawnPos;
         var newProjectile = Instantiate(projectile);
         newProjectile.transform.position = transform.position ;
