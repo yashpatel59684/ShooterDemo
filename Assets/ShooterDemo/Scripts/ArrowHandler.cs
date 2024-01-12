@@ -5,14 +5,10 @@ using UnityEngine;
 public class ArrowHandler : MonoBehaviour
 {
     [SerializeField] Transform bloodTransform,arrowPointerTransform;
-    Transform enemyTransform;
-    private void Start()
+    private void Start(){}
+    public void ChangeParent(Collision collision)
     {
-        enemyTransform = GameObject.FindGameObjectWithTag("Enemy").transform;
-    }
-    public void ChangeParent()
-    {
-        transform.SetParent(enemyTransform);
+        transform.SetParent(collision.transform);
     }
     public void GenerateBlood()
     {
