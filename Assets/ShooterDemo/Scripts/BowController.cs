@@ -37,11 +37,6 @@ public class BowController : MonoBehaviour
                 break;
         }
     }
-    public void OnGUI()
-    {
-        if (m_Charging)
-            GUI.Label(new Rect(100, 100, 200, 100), "Charging...");
-    }
      float timeRemaining = 1;
     void Update()
     {
@@ -63,16 +58,7 @@ public class BowController : MonoBehaviour
         {
             rigidbody.isKinematic = false;
             rigidbody.mass = Mathf.Pow(size, 3);
-            Debug.Log(transform.forward * force * givenForce);
             rigidbody.AddForce(transform.forward * force * givenForce, ForceMode.Impulse);
         }
     }
-/*    private IEnumerator BurstFire(int burstAmount)
-    {
-        for (var i = 0; i < burstAmount; ++i)
-        {
-            Fire();
-            yield return new WaitForSeconds(0.1f);
-        }
-    }*/
 }
