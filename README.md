@@ -1,5 +1,6 @@
 # ShooterDemo
 
+Use unity 2022.3.0
 Open the scene from the build setting.
 Created windows biuld also if you want to play directly.
 All assets use in project are free from asset store and packagemanager.
