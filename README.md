@@ -2,7 +2,7 @@
 
 Use unity 2022.3.0
 Open the scene from the build setting and play.
-All assets use in project are free from asset store and packagemanager.
+All assets used in project are free from asset store and packagemanager.
 Audio's might have copyright issue(use them for fun/personal).
 
 1. For the float effect, I created an animation clip and used it. In addition to the animation, I created a script to handle the position and rotation using DOTween. To check that, disable the animator component in the float prefab and enable the OnEnableHandler component in the child.
