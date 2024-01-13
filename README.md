@@ -1,8 +1,7 @@
 # ShooterDemo
 
 Use unity 2022.3.0
-Open the scene from the build setting.
-Created windows biuld also if you want to play directly.
+Open the scene from the build setting and play.
 All assets use in project are free from asset store and packagemanager.
 Audio's might have copyright issue(use them for fun/personal).
 
